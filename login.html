@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Login QC Conveyor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
+      <h3 class="text-center mb-4">Login QC Conveyor</h3>
+      <form id="loginForm">
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" id="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">User ID</label>
+          <input type="text" id="userid" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Login</button>
+      </form>
+      <div id="error" class="mt-3 text-danger text-center" style="display: none;">Login gagal. Coba lagi.</div>
+    </div>
+  </div>
+
+  <script>
+    const allowedUsers = {
+      "sentot": "QC123",
+      "galang": "QC007",
+      "rifki": "QC177",
+      "andra": "QC089",
+      "teguh": "QC081",
+      "eko": "QC005",
+      "rini": "QC006",
+      "agus": "QC007",
+      "lia": "QC008",
+      "tono": "QC009",
+      "joko": "QC010"
+    };
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim().toLowerCase();
+      const userid = document.getElementById("userid").value.trim().toUpperCase();
+
+      if (allowedUsers[username] === userid) {
+        localStorage.setItem("loggedInUser", username);
+        window.location.href = "form.html";
+      } else {
+        document.getElementById("error").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
